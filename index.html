@@ -268,8 +268,9 @@
     }
     .project-card:hover::before { opacity: 1; }
     .project-card:hover { border-color: var(--accent); box-shadow: 0 0 30px rgba(0,212,255,0.07); }
-    .project-card::after { content: '↗'; position: absolute; top: 1.25rem; right: 1.25rem; color: var(--dim); font-size: 0.9rem; transition: color 0.3s, transform 0.3s; }
-    .project-card:hover::after { color: var(--accent); transform: translate(2px, -2px); }
+    .project-card[href]::after { content: '↗'; position: absolute; top: 1.25rem; right: 1.25rem; color: var(--dim); font-size: 0.9rem; transition: color 0.3s, transform 0.3s; }
+    .project-card[href]:hover::after { color: var(--accent); transform: translate(2px, -2px); }
+
     .project-icon { font-size: 1.5rem; }
     .project-name { font-family: 'Syne', sans-serif; font-size: 1rem; font-weight: 700; color: var(--text); }
     .project-desc { font-size: 0.8rem; color: var(--muted); font-weight: 300; line-height: 1.7; flex: 1; }
@@ -348,7 +349,7 @@
   <section id="hero">
     <p class="hero-eyebrow">// physicist · quant analyst · founder</p>
     <h1 class="hero-name">Adam<br/><span>Ansari</span></h1>
-    <p class="hero-title">BSc Physics · <strong>University of Warwick</strong> · Predicted 1:1</p>
+    <p class="hero-title">BSc Physics · <strong>University of Warwick</strong></p>
     <div class="hero-tags">
       <span class="hero-tag">Python</span>
       <span class="hero-tag">Machine Learning</span>
@@ -410,7 +411,7 @@
         <div class="timeline-date">Nov 2025 — Jan 2026</div>
         <div class="timeline-role">AI Developer</div>
         <div class="timeline-org">Outlier AI</div>
-        <div class="timeline-desc">Used physics and mathematical modelling techniques to feed high-quality training data into AI systems. Conducted data analysis using Python and provided structured feedback to improve model performance across complex reasoning tasks.</div>
+        <div class="timeline-desc">Applied physics and mathematical modelling to generate and evaluate high-quality training data for large language models. Wrote and critically reviewed complex Python solutions to stress-test model reasoning across STEM domains, identifying failure modes and providing detailed feedback. Worked to high accuracy standards where rigour directly influenced model improvement cycles.</div>
         <div class="timeline-tags">
           <span class="timeline-tag">Python</span><span class="timeline-tag">AI/ML</span><span class="timeline-tag">Mathematical Modelling</span><span class="timeline-tag">Data Analysis</span>
         </div>
@@ -421,7 +422,7 @@
         <div class="timeline-date">Mar 2025 — Apr 2025</div>
         <div class="timeline-role">Quantitative Finance Analyst</div>
         <div class="timeline-org">PowerPay Exchange</div>
-        <div class="timeline-desc">Built a walk-forward, back-testing ML algorithm in Python to analyse stock movements, comparing Random Forest and Linear Regression methods. Applied time-series analysis to predict stock patterns. Converted over £100,000 into USDT and consulted high net-worth clients on digital asset strategy. Also developed the company's front-end website and led client-facing presentations.</div>
+        <div class="timeline-desc">Designed and built a walk-forward back-testing framework in Python to evaluate trading strategies across live market data, benchmarking Random Forest against Linear Regression under multiple market regimes. Used time-series decomposition and feature engineering to improve signal quality. Facilitated the conversion of over £100,000 into USDT and presented digital asset strategies directly to high net-worth clients. Also contributed to building the company's front-end website.</div>
         <div class="timeline-tags">
           <span class="timeline-tag">Python</span><span class="timeline-tag">Random Forest</span><span class="timeline-tag">Time-Series</span><span class="timeline-tag">Front-End</span><span class="timeline-tag">Client Consulting</span>
         </div>
@@ -432,7 +433,7 @@
         <div class="timeline-date">Nov 2024 — Dec 2024</div>
         <div class="timeline-role">Financial Services Bridger</div>
         <div class="timeline-org">Mutual Finance Limited</div>
-        <div class="timeline-desc">Used financial data, SQL, and Excel while shadowing meetings between Lenders, Bridgers, and Developers. Began consulting for high net-worth clients — comparing credit and interest rates across banks and helping optimise multi-million-pound portfolios.</div>
+        <div class="timeline-desc">Embedded within a team of senior brokers, attending live deal negotiations between Lenders, Bridgers, and Property Developers. Used SQL and Excel to process financial data and support analysis. Began consulting independently for high net-worth clients — comparing credit facilities and interest rates across major banks, and contributing to the optimisation of multi-million-pound asset portfolios.</div>
         <div class="timeline-tags">
           <span class="timeline-tag">SQL</span><span class="timeline-tag">Excel</span><span class="timeline-tag">Portfolio Management</span><span class="timeline-tag">Client Relations</span>
         </div>
@@ -443,7 +444,7 @@
         <div class="timeline-date">Dec 2023 — Nov 2024</div>
         <div class="timeline-role">Trading & Investments Analyst</div>
         <div class="timeline-org">Infinity Forex Trading</div>
-        <div class="timeline-desc">Analysed commodity and FX markets, completing risk analysis across live positions. Leveraged the AI tool 'Menara' for quantitative stock prediction using regression modelling and pattern recognition. Achieved an 800% ROI on managed portfolio.</div>
+        <div class="timeline-desc">Developed a systematic approach to analysing commodity and FX markets, combining technical analysis with structured risk management across live positions. Integrated the AI platform 'Menara' to augment quantitative decision-making — using regression modelling and pattern recognition to identify high-probability setups. Applied consistent position sizing and risk controls, achieving an 800% ROI across the managed portfolio over the course of the programme.</div>
         <div class="timeline-tags">
           <span class="timeline-tag">FX Markets</span><span class="timeline-tag">Risk Analysis</span><span class="timeline-tag">Regression Modelling</span><span class="timeline-tag">AI Tools</span>
         </div>
@@ -479,29 +480,23 @@
     <p class="section-label reveal">03 — GitHub Projects</p>
     <h2 class="reveal">Things I've built</h2>
     <div class="projects-grid">
-      <a href="https://github.com/adamansari" target="_blank" class="project-card">
+      <a href="https://github.com/adam1ansari1-lang/ML-Stock-Forecasting" target="_blank" class="project-card" style="text-decoration:none;color:inherit;">
         <div class="project-icon">📈</div>
-        <div class="project-name">ML Stock Predictor</div>
-        <div class="project-desc">Walk-forward back-testing algorithm comparing Random Forest vs Linear Regression for stock movement prediction using time-series analysis.</div>
-        <div class="project-tags"><span class="tag">Python</span><span class="tag">Sklearn</span><span class="tag">Pandas</span><span class="tag">Time-Series</span></div>
+        <div class="project-name">ML Stock Forecasting</div>
+        <div class="project-desc">A walk-forward back-testing framework built in Python to evaluate and compare ML-based trading strategies on live historical market data. Benchmarks Random Forest against Linear Regression across multiple market conditions, using time-series decomposition and feature engineering to improve signal quality. Originally developed during my role at PowerPay Exchange, where it was used to inform real trading decisions.</div>
+        <div class="project-tags"><span class="tag">Python</span><span class="tag">Sklearn</span><span class="tag">Pandas</span><span class="tag">Time-Series</span><span class="tag">Matplotlib</span></div>
       </a>
-      <a href="https://github.com/adamansari" target="_blank" class="project-card">
+      <a href="https://github.com/adam1ansari1-lang/Dalitz-Plots-and-Particle-Physics" target="_blank" class="project-card" style="text-decoration:none;color:inherit;">
+        <div class="project-icon">⚛️</div>
+        <div class="project-name">Dalitz Plots & Particle Physics</div>
+        <div class="project-desc">A Python-based analysis of three-body particle decay using Dalitz plots — a technique first introduced by Richard Dalitz in 1953 and central to modern high-energy physics experiments. The project computes invariant masses of decay product pairs, constructs the two-dimensional phase-space plots, and identifies resonance structures and CP violation signatures in the data. Directly relevant to research conducted in the Physics department at Warwick.</div>
+        <div class="project-tags"><span class="tag">Python</span><span class="tag">NumPy</span><span class="tag">Matplotlib</span><span class="tag">Particle Physics</span><span class="tag">CP Violation</span></div>
+      </a>
+      <a href="https://github.com/adam1ansari1-lang/Dalitz-Plots-and-Particle-Physics" target="_blank" class="project-card" style="text-decoration:none;color:inherit;">
         <div class="project-icon">🤖</div>
         <div class="project-name">Educational Chatbot</div>
-        <div class="project-desc">Cambridge AI Hackathon finalist project — a chatbot designed to help students with GCSE and A-level topics using natural language.</div>
-        <div class="project-tags"><span class="tag">Python</span><span class="tag">NLP</span><span class="tag">AI</span></div>
-      </a>
-      <a href="https://github.com/adamansari" target="_blank" class="project-card">
-        <div class="project-icon">⚛️</div>
-        <div class="project-name">Quantum Simulation</div>
-        <div class="project-desc">Numerical simulation of quantum systems — visualises wave function evolution and energy level transitions using Python.</div>
-        <div class="project-tags"><span class="tag">Python</span><span class="tag">NumPy</span><span class="tag">Matplotlib</span></div>
-      </a>
-      <a href="https://github.com/adamansari" target="_blank" class="project-card">
-        <div class="project-icon">🔬</div>
-        <div class="project-name">Your Next Project</div>
-        <div class="project-desc">Link your real GitHub repos here — replace this card with actual projects once you push them to GitHub.</div>
-        <div class="project-tags"><span class="tag">Edit me</span></div>
+        <div class="project-desc">Built for the Cambridge AI Hackathon, where it reached the finalist stage. The chatbot supports GCSE and A-level students by answering curriculum-aligned questions across Physics, Maths, and STEM subjects — using natural language processing to interpret queries and return clear, structured explanations. Directly inspired by my experience running Ansari Tutoring and the gap I saw in accessible, on-demand academic support.</div>
+        <div class="project-tags"><span class="tag">Python</span><span class="tag">NLP</span><span class="tag">AI</span><span class="tag">Education</span></div>
       </a>
     </div>
   </section>
@@ -582,7 +577,7 @@
       Open to research collaborations, finance opportunities, tutoring enquiries, and interesting conversations.
     </p>
     <div class="contact-links reveal">
-      <a href="mailto:adam1ansari1@gmail.com" class="contact-link">
+      <a href="/cdn-cgi/l/email-protection#93f2f7f2fea2f2fde0f2e1faa2d3f4fef2faffbdf0fcfe" class="contact-link">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>
         Email
       </a>
@@ -605,7 +600,7 @@
     <p>© 2026 Adam Ansari — Physicist · Quant · Founder · Built with HTML, hosted on GitHub Pages</p>
   </footer>
 
-  <script>
+  <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
     // ── Custom cursor ──
     const cursor = document.getElementById('cursor');
     const ring = document.getElementById('cursorRing');
@@ -668,10 +663,4 @@
     document.querySelectorAll('.project-card').forEach(card => {
       card.addEventListener('mousemove', e => {
         const r = card.getBoundingClientRect();
-        card.style.setProperty('--mx', ((e.clientX - r.left) / r.width * 100) + '%');
-        card.style.setProperty('--my', ((e.clientY - r.top) / r.height * 100) + '%');
-      });
-    });
-  </script>
-</body>
-</html>
+        card.style.setProperty('--mx', ((e.clientX - r.left) / r.
