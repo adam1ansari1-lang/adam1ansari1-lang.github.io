@@ -3,12 +3,11 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Adam Ansari — Physicist & Quant</title>
+  <title>Adam Ansari — Physicist &amp; Quant</title>
   <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Mono:ital,wght@0,300;0,400;1,300&display=swap" rel="stylesheet"/>
   <style>
     :root {
       --bg: #080c10;
-      --bg2: #0e1318;
       --surface: #131920;
       --border: #1e2830;
       --accent: #00d4ff;
@@ -18,309 +17,274 @@
       --muted: #6b7f8f;
       --dim: #3a4a57;
     }
-
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
     html { scroll-behavior: smooth; }
-
     body {
-      background: var(--bg);
-      color: var(--text);
-      font-family: 'DM Mono', monospace;
-      font-size: 15px;
-      line-height: 1.7;
-      overflow-x: hidden;
-      cursor: none;
+      background: var(--bg); color: var(--text);
+      font-family: 'DM Mono', monospace; font-size: 15px;
+      line-height: 1.7; overflow-x: hidden; cursor: none;
     }
-
-    /* CUSTOM CURSOR */
+    /* CURSOR */
     .cursor {
-      position: fixed; width: 10px; height: 10px;
-      background: var(--accent); border-radius: 50%;
-      pointer-events: none; z-index: 9999;
-      transform: translate(-50%, -50%);
-      mix-blend-mode: screen;
-      transition: width 0.2s, height 0.2s, background 0.2s;
+      position: fixed; width: 10px; height: 10px; background: var(--accent);
+      border-radius: 50%; pointer-events: none; z-index: 9999;
+      transform: translate(-50%,-50%); mix-blend-mode: screen;
+      transition: width .2s, height .2s, background .2s;
     }
     .cursor-ring {
       position: fixed; width: 36px; height: 36px;
       border: 1px solid rgba(0,212,255,0.4); border-radius: 50%;
-      pointer-events: none; z-index: 9998;
-      transform: translate(-50%, -50%);
-      transition: width 0.25s, height 0.25s, border-color 0.2s;
+      pointer-events: none; z-index: 9998; transform: translate(-50%,-50%);
+      transition: width .25s, height .25s, border-color .2s;
     }
     body:has(a:hover) .cursor { width: 16px; height: 16px; background: var(--accent2); }
     body:has(a:hover) .cursor-ring { width: 50px; height: 50px; border-color: rgba(123,97,255,0.5); }
-
-    /* NOISE OVERLAY */
+    /* NOISE */
     body::before {
-      content: ''; position: fixed; inset: 0;
-      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E");
-      pointer-events: none; z-index: 1000; opacity: 0.5;
+      content: ''; position: fixed; inset: 0; pointer-events: none; z-index: 1000; opacity: 0.5;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E");
     }
-
-    /* SCROLL PROGRESS BAR */
+    /* PROGRESS BAR */
     .progress-bar {
-      position: fixed; top: 0; left: 0; height: 2px;
+      position: fixed; top: 0; left: 0; height: 2px; width: 0%;
       background: linear-gradient(90deg, var(--accent), var(--accent2));
-      z-index: 200; width: 0%;
-      box-shadow: 0 0 8px var(--accent);
-      transition: width 0.05s linear;
+      z-index: 200; box-shadow: 0 0 8px var(--accent);
     }
-
     /* STARS */
     .stars { position: fixed; inset: 0; pointer-events: none; z-index: 0; }
     .star {
       position: absolute; background: white; border-radius: 50%;
-      animation: twinkle var(--d, 4s) ease-in-out infinite var(--delay, 0s);
+      animation: twinkle var(--d,4s) ease-in-out infinite var(--delay,0s);
     }
     @keyframes twinkle {
-      0%, 100% { opacity: var(--min-op, 0.1); transform: scale(1); }
-      50% { opacity: var(--max-op, 0.8); transform: scale(1.3); }
+      0%,100% { opacity: var(--min-op,0.1); transform: scale(1); }
+      50% { opacity: var(--max-op,0.8); transform: scale(1.3); }
     }
-
-    /* PARALLAX ORBS */
+    /* ORBS */
     .orb {
       position: fixed; border-radius: 50%; filter: blur(90px);
       pointer-events: none; z-index: 0; opacity: 0.06; will-change: transform;
     }
-    .orb-1 { width: 500px; height: 500px; background: var(--accent); top: -100px; left: -100px; }
-    .orb-2 { width: 400px; height: 400px; background: var(--accent2); bottom: 20%; right: -100px; }
-    .orb-3 { width: 300px; height: 300px; background: var(--accent3); top: 60%; left: 30%; }
-
+    .orb-1 { width:500px; height:500px; background:var(--accent); top:-100px; left:-100px; }
+    .orb-2 { width:400px; height:400px; background:var(--accent2); bottom:20%; right:-100px; }
+    .orb-3 { width:300px; height:300px; background:var(--accent3); top:60%; left:30%; }
     /* NAV */
     nav {
-      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
-      display: flex; justify-content: space-between; align-items: center;
-      padding: 1.2rem 3rem;
-      background: rgba(8,12,16,0.85);
-      backdrop-filter: blur(20px);
-      border-bottom: 1px solid var(--border);
-      transition: padding 0.3s;
+      position: fixed; top:0; left:0; right:0; z-index:100;
+      display:flex; justify-content:space-between; align-items:center;
+      padding:1.2rem 3rem; background:rgba(8,12,16,0.85);
+      backdrop-filter:blur(20px); border-bottom:1px solid var(--border);
+      transition: padding .3s;
     }
-    nav.scrolled { padding: 0.75rem 3rem; }
+    nav.scrolled { padding: .75rem 3rem; }
     .nav-logo {
-      font-family: 'Syne', sans-serif; font-weight: 800; font-size: 1.1rem;
-      color: var(--accent); letter-spacing: -0.02em; text-decoration: none;
+      font-family:'Syne',sans-serif; font-weight:800; font-size:1.1rem;
+      color:var(--accent); letter-spacing:-.02em; text-decoration:none;
     }
-    .nav-links { display: flex; gap: 2rem; list-style: none; }
+    .nav-links { display:flex; gap:2rem; list-style:none; }
     .nav-links a {
-      color: var(--muted); text-decoration: none; font-size: 0.75rem;
-      letter-spacing: 0.12em; text-transform: uppercase; transition: color 0.2s;
-      position: relative;
+      color:var(--muted); text-decoration:none; font-size:.75rem;
+      letter-spacing:.12em; text-transform:uppercase; transition:color .2s;
+      position:relative;
     }
     .nav-links a::after {
-      content: ''; position: absolute; bottom: -3px; left: 0; right: 0;
-      height: 1px; background: var(--accent); transform: scaleX(0); transition: transform 0.2s;
+      content:''; position:absolute; bottom:-3px; left:0; right:0;
+      height:1px; background:var(--accent); transform:scaleX(0); transition:transform .2s;
     }
-    .nav-links a:hover, .nav-links a.active { color: var(--accent); }
-    .nav-links a:hover::after, .nav-links a.active::after { transform: scaleX(1); }
-
+    .nav-links a:hover, .nav-links a.active { color:var(--accent); }
+    .nav-links a:hover::after, .nav-links a.active::after { transform:scaleX(1); }
     /* SECTIONS */
     section {
-      position: relative; z-index: 1;
-      max-width: 860px; margin: 0 auto; padding: 7rem 2rem;
+      position:relative; z-index:1;
+      max-width:860px; margin:0 auto; padding:7rem 2rem;
     }
     .section-label {
-      font-size: 0.68rem; letter-spacing: 0.2em; text-transform: uppercase;
-      color: var(--accent); margin-bottom: 1rem;
-      display: flex; align-items: center; gap: 0.75rem;
+      font-size:.68rem; letter-spacing:.2em; text-transform:uppercase;
+      color:var(--accent); margin-bottom:1rem;
+      display:flex; align-items:center; gap:.75rem;
     }
-    .section-label::after { content: ''; flex: 1; height: 1px; background: var(--border); max-width: 60px; }
+    .section-label::after { content:''; flex:1; height:1px; background:var(--border); max-width:60px; }
     h2 {
-      font-family: 'Syne', sans-serif; font-size: clamp(1.8rem, 4vw, 2.6rem);
-      font-weight: 800; color: var(--text); line-height: 1.15;
-      margin-bottom: 2.5rem; letter-spacing: -0.03em;
+      font-family:'Syne',sans-serif; font-size:clamp(1.8rem,4vw,2.6rem);
+      font-weight:800; color:var(--text); line-height:1.15;
+      margin-bottom:2.5rem; letter-spacing:-.03em;
     }
-
-    /* REVEAL ANIMATIONS */
-    .reveal { opacity: 0; transform: translateY(30px); transition: opacity 0.7s cubic-bezier(0.16,1,0.3,1), transform 0.7s cubic-bezier(0.16,1,0.3,1); }
-    .reveal-left { opacity: 0; transform: translateX(-30px); transition: opacity 0.7s cubic-bezier(0.16,1,0.3,1), transform 0.7s cubic-bezier(0.16,1,0.3,1); }
-    .reveal-right { opacity: 0; transform: translateX(30px); transition: opacity 0.7s cubic-bezier(0.16,1,0.3,1), transform 0.7s cubic-bezier(0.16,1,0.3,1); }
-    .reveal.visible, .reveal-left.visible, .reveal-right.visible { opacity: 1; transform: translate(0); }
-
+    /* REVEAL */
+    .reveal { opacity:0; transform:translateY(30px); transition:opacity .7s cubic-bezier(.16,1,.3,1), transform .7s cubic-bezier(.16,1,.3,1); }
+    .reveal-left { opacity:0; transform:translateX(-30px); transition:opacity .7s cubic-bezier(.16,1,.3,1), transform .7s cubic-bezier(.16,1,.3,1); }
+    .reveal-right { opacity:0; transform:translateX(30px); transition:opacity .7s cubic-bezier(.16,1,.3,1), transform .7s cubic-bezier(.16,1,.3,1); }
+    .reveal.visible, .reveal-left.visible, .reveal-right.visible { opacity:1; transform:translate(0); }
     /* HERO */
     #hero {
-      min-height: 100vh; display: flex; flex-direction: column;
-      justify-content: center; padding-top: 6rem; max-width: 960px;
+      min-height:100vh; display:flex; flex-direction:column;
+      justify-content:center; padding-top:6rem; max-width:960px;
     }
     .hero-eyebrow {
-      font-size: 0.7rem; letter-spacing: 0.25em; text-transform: uppercase;
-      color: var(--accent); margin-bottom: 1.5rem;
-      opacity: 0; animation: fadeUp 0.8s 0.2s forwards;
+      font-size:.7rem; letter-spacing:.25em; text-transform:uppercase;
+      color:var(--accent); margin-bottom:1.5rem;
+      opacity:0; animation:fadeUp .8s .2s forwards;
     }
     .hero-name {
-      font-family: 'Syne', sans-serif; font-size: clamp(3rem, 9vw, 7rem);
-      font-weight: 800; line-height: 0.95; letter-spacing: -0.04em; color: var(--text);
-      opacity: 0; animation: fadeUp 0.8s 0.4s forwards;
+      font-family:'Syne',sans-serif; font-size:clamp(3rem,9vw,7rem);
+      font-weight:800; line-height:.95; letter-spacing:-.04em; color:var(--text);
+      opacity:0; animation:fadeUp .8s .4s forwards;
     }
-    .hero-name span { color: transparent; -webkit-text-stroke: 1px var(--accent); }
+    .hero-name span { color:transparent; -webkit-text-stroke:1px var(--accent); }
     .hero-title {
-      font-size: clamp(1rem, 2.5vw, 1.25rem); color: var(--muted);
-      margin-top: 1.5rem; font-weight: 300; font-style: italic;
-      opacity: 0; animation: fadeUp 0.8s 0.6s forwards;
+      font-size:clamp(1rem,2.5vw,1.25rem); color:var(--muted);
+      margin-top:1.5rem; font-weight:300; font-style:italic;
+      opacity:0; animation:fadeUp .8s .6s forwards;
     }
-    .hero-title strong { color: var(--accent2); font-style: normal; font-weight: 400; }
+    .hero-title strong { color:var(--accent2); font-style:normal; font-weight:400; }
     .hero-tags {
-      display: flex; flex-wrap: wrap; gap: 0.6rem; margin-top: 1.5rem;
-      opacity: 0; animation: fadeUp 0.8s 0.75s forwards;
+      display:flex; flex-wrap:wrap; gap:.6rem; margin-top:1.5rem;
+      opacity:0; animation:fadeUp .8s .75s forwards;
     }
     .hero-tag {
-      font-size: 0.65rem; letter-spacing: 0.1em; text-transform: uppercase;
-      color: var(--muted); border: 1px solid var(--border); border-radius: 3px;
-      padding: 0.25rem 0.65rem; background: var(--surface);
+      font-size:.65rem; letter-spacing:.1em; text-transform:uppercase;
+      color:var(--muted); border:1px solid var(--border); border-radius:3px;
+      padding:.25rem .65rem; background:var(--surface);
     }
     .hero-cta {
-      display: flex; gap: 1rem; margin-top: 2.5rem; flex-wrap: wrap;
-      opacity: 0; animation: fadeUp 0.8s 0.9s forwards;
+      display:flex; gap:1rem; margin-top:2.5rem; flex-wrap:wrap;
+      opacity:0; animation:fadeUp .8s .9s forwards;
     }
     .btn {
-      display: inline-flex; align-items: center; gap: 0.5rem;
-      padding: 0.75rem 1.75rem; border-radius: 4px;
-      font-family: 'DM Mono', monospace; font-size: 0.75rem;
-      letter-spacing: 0.1em; text-transform: uppercase; text-decoration: none; transition: all 0.25s; cursor: none;
+      display:inline-flex; align-items:center; gap:.5rem;
+      padding:.75rem 1.75rem; border-radius:4px;
+      font-family:'DM Mono',monospace; font-size:.75rem;
+      letter-spacing:.1em; text-transform:uppercase; text-decoration:none;
+      transition:all .25s; cursor:none;
     }
-    .btn-primary { background: var(--accent); color: var(--bg); border: 1px solid var(--accent); }
-    .btn-primary:hover { background: transparent; color: var(--accent); }
-    .btn-ghost { background: transparent; color: var(--muted); border: 1px solid var(--border); }
-    .btn-ghost:hover { border-color: var(--accent); color: var(--accent); }
+    .btn-primary { background:var(--accent); color:var(--bg); border:1px solid var(--accent); }
+    .btn-primary:hover { background:transparent; color:var(--accent); }
+    .btn-ghost { background:transparent; color:var(--muted); border:1px solid var(--border); }
+    .btn-ghost:hover { border-color:var(--accent); color:var(--accent); }
     .scroll-hint {
-      display: flex; flex-direction: column; align-items: center; gap: 0.5rem;
-      color: var(--dim); font-size: 0.65rem; letter-spacing: 0.15em; text-transform: uppercase;
-      margin-top: 4rem;
-      opacity: 0; animation: fadeUp 1s 1.4s forwards;
+      display:flex; flex-direction:column; align-items:center; gap:.5rem;
+      color:var(--dim); font-size:.65rem; letter-spacing:.15em; text-transform:uppercase;
+      margin-top:4rem; opacity:0; animation:fadeUp 1s 1.4s forwards;
     }
-    .scroll-hint svg { width: 16px; height: 16px; animation: bob 2s ease-in-out infinite; }
+    .scroll-hint svg { width:16px; height:16px; animation:bob 2s ease-in-out infinite; }
     @keyframes bob { 0%,100%{transform:translateY(0)} 50%{transform:translateY(5px)} }
-
     /* GLOW LINE */
     .glow-line {
-      width: 100%; height: 1px;
-      background: linear-gradient(90deg, transparent, var(--accent), transparent);
-      opacity: 0.3; position: relative; z-index: 1;
+      width:100%; height:1px; position:relative; z-index:1; opacity:.3;
+      background:linear-gradient(90deg,transparent,var(--accent),transparent);
     }
-
     /* ABOUT */
-    .about-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 3rem; align-items: start; }
-    .about-text p { color: var(--muted); margin-bottom: 1.2rem; font-weight: 300; }
-    .about-text p strong { color: var(--text); font-weight: 400; }
-    .about-stats { display: flex; flex-direction: column; gap: 1rem; }
+    .about-grid { display:grid; grid-template-columns:1fr 1fr; gap:3rem; align-items:start; }
+    .about-text p { color:var(--muted); margin-bottom:1.2rem; font-weight:300; }
+    .about-text p strong { color:var(--text); font-weight:400; }
+    .about-stats { display:flex; flex-direction:column; gap:1rem; }
     .stat-card {
-      background: var(--surface); border: 1px solid var(--border); border-radius: 8px;
-      padding: 1rem 1.4rem; position: relative; overflow: hidden;
-      transition: border-color 0.3s, transform 0.3s;
+      background:var(--surface); border:1px solid var(--border); border-radius:8px;
+      padding:1rem 1.4rem; position:relative; overflow:hidden;
+      transition:border-color .3s, transform .3s;
     }
-    .stat-card:hover { border-color: var(--accent); transform: translateX(4px); }
-    .stat-card::before { content: ''; position: absolute; top: 0; left: 0; width: 3px; height: 100%; background: var(--accent); }
-    .stat-num { font-family: 'Syne', sans-serif; font-size: 1.5rem; font-weight: 800; color: var(--accent); line-height: 1; }
-    .stat-label { font-size: 0.67rem; color: var(--muted); letter-spacing: 0.1em; text-transform: uppercase; margin-top: 0.2rem; }
-
-    .awards-strip { display: flex; flex-wrap: wrap; gap: 0.6rem; margin-top: 2rem; }
+    .stat-card:hover { border-color:var(--accent); transform:translateX(4px); }
+    .stat-card::before { content:''; position:absolute; top:0; left:0; width:3px; height:100%; background:var(--accent); }
+    .stat-num { font-family:'Syne',sans-serif; font-size:1.5rem; font-weight:800; color:var(--accent); line-height:1; }
+    .stat-label { font-size:.67rem; color:var(--muted); letter-spacing:.1em; text-transform:uppercase; margin-top:.2rem; }
+    .awards-strip { display:flex; flex-wrap:wrap; gap:.6rem; margin-top:2rem; }
     .award-pill {
-      font-size: 0.68rem; color: var(--accent3); background: rgba(0,255,178,0.06);
-      border: 1px solid rgba(0,255,178,0.2); border-radius: 20px;
-      padding: 0.3rem 0.9rem; letter-spacing: 0.04em;
-      transition: background 0.2s, transform 0.2s;
+      font-size:.68rem; color:var(--accent3); background:rgba(0,255,178,0.06);
+      border:1px solid rgba(0,255,178,0.2); border-radius:20px;
+      padding:.3rem .9rem; letter-spacing:.04em; transition:background .2s, transform .2s;
     }
-    .award-pill:hover { background: rgba(0,255,178,0.12); transform: translateY(-2px); }
-
+    .award-pill:hover { background:rgba(0,255,178,0.12); transform:translateY(-2px); }
     /* TIMELINE */
-    .timeline { display: flex; flex-direction: column; position: relative; }
-    .timeline::before { content: ''; position: absolute; left: 0; top: 0.6rem; bottom: 0; width: 1px; background: var(--border); }
+    .timeline { display:flex; flex-direction:column; position:relative; }
+    .timeline::before { content:''; position:absolute; left:0; top:.6rem; bottom:0; width:1px; background:var(--border); }
     .timeline-item {
-      padding: 0 0 2.5rem 2rem; position: relative;
-      opacity: 0; transform: translateX(-20px);
-      transition: opacity 0.6s, transform 0.6s;
+      padding:0 0 2.5rem 2rem; position:relative;
+      opacity:0; transform:translateX(-20px); transition:opacity .6s, transform .6s;
     }
-    .timeline-item.visible { opacity: 1; transform: translateX(0); }
+    .timeline-item.visible { opacity:1; transform:translateX(0); }
     .timeline-dot {
-      position: absolute; left: -5px; top: 0.45rem;
-      width: 11px; height: 11px; border-radius: 50%;
-      background: var(--accent); border: 2px solid var(--bg);
-      box-shadow: 0 0 10px var(--accent); transition: transform 0.3s;
+      position:absolute; left:-5px; top:.45rem;
+      width:11px; height:11px; border-radius:50%;
+      background:var(--accent); border:2px solid var(--bg);
+      box-shadow:0 0 10px var(--accent); transition:transform .3s;
     }
-    .timeline-item:hover .timeline-dot { transform: scale(1.5); }
-    .timeline-date { font-size: 0.68rem; color: var(--accent2); letter-spacing: 0.12em; text-transform: uppercase; margin-bottom: 0.3rem; }
-    .timeline-role { font-family: 'Syne', sans-serif; font-size: 1.05rem; font-weight: 700; color: var(--text); margin-bottom: 0.1rem; }
-    .timeline-org { font-size: 0.8rem; color: var(--accent); margin-bottom: 0.6rem; }
-    .timeline-desc { font-size: 0.82rem; color: var(--dim); font-weight: 300; line-height: 1.8; }
-    .timeline-tags { display: flex; flex-wrap: wrap; gap: 0.4rem; margin-top: 0.65rem; }
+    .timeline-item:hover .timeline-dot { transform:scale(1.5); }
+    .timeline-date { font-size:.68rem; color:var(--accent2); letter-spacing:.12em; text-transform:uppercase; margin-bottom:.3rem; }
+    .timeline-role { font-family:'Syne',sans-serif; font-size:1.05rem; font-weight:700; color:var(--text); margin-bottom:.1rem; }
+    .timeline-org { font-size:.8rem; color:var(--accent); margin-bottom:.6rem; }
+    .timeline-desc { font-size:.82rem; color:var(--dim); font-weight:300; line-height:1.8; }
+    .timeline-tags { display:flex; flex-wrap:wrap; gap:.4rem; margin-top:.65rem; }
     .timeline-tag {
-      font-size: 0.62rem; letter-spacing: 0.08em; text-transform: uppercase;
-      color: var(--muted); background: rgba(255,255,255,0.03);
-      border: 1px solid var(--border); border-radius: 3px; padding: 0.15rem 0.5rem;
+      font-size:.62rem; letter-spacing:.08em; text-transform:uppercase;
+      color:var(--muted); background:rgba(255,255,255,0.03);
+      border:1px solid var(--border); border-radius:3px; padding:.15rem .5rem;
     }
-
     /* PROJECTS */
-    .projects-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 1.25rem; }
+    .projects-grid { display:grid; grid-template-columns:repeat(auto-fill,minmax(260px,1fr)); gap:1.25rem; }
     .project-card {
-      background: var(--surface); border: 1px solid var(--border); border-radius: 10px;
-      padding: 1.5rem; text-decoration: none; color: inherit;
-      display: flex; flex-direction: column; gap: 0.75rem;
-      position: relative; overflow: hidden;
-      opacity: 0; transform: translateY(20px);
-      transition: opacity 0.5s, transform 0.5s, border-color 0.3s, box-shadow 0.3s;
+      background:var(--surface); border:1px solid var(--border); border-radius:10px;
+      padding:1.5rem; text-decoration:none; color:inherit;
+      display:flex; flex-direction:column; gap:.75rem;
+      position:relative; overflow:hidden;
+      opacity:0; transform:translateY(20px);
+      transition:opacity .5s, transform .5s, border-color .3s, box-shadow .3s;
     }
-    .project-card.visible { opacity: 1; transform: translateY(0); }
+    .project-card.visible { opacity:1; transform:translateY(0); }
     .project-card::before {
-      content: ''; position: absolute; inset: 0;
-      background: radial-gradient(circle at var(--mx,50%) var(--my,50%), rgba(0,212,255,0.06), transparent 60%);
-      opacity: 0; transition: opacity 0.3s;
+      content:''; position:absolute; inset:0;
+      background:radial-gradient(circle at var(--mx,50%) var(--my,50%), rgba(0,212,255,0.06), transparent 60%);
+      opacity:0; transition:opacity .3s;
     }
-    .project-card:hover::before { opacity: 1; }
-    .project-card:hover { border-color: var(--accent); box-shadow: 0 0 30px rgba(0,212,255,0.07); }
-    .project-card[href]::after { content: '↗'; position: absolute; top: 1.25rem; right: 1.25rem; color: var(--dim); font-size: 0.9rem; transition: color 0.3s, transform 0.3s; }
-    .project-card[href]:hover::after { color: var(--accent); transform: translate(2px, -2px); }
-
-    .project-icon { font-size: 1.5rem; }
-    .project-name { font-family: 'Syne', sans-serif; font-size: 1rem; font-weight: 700; color: var(--text); }
-    .project-desc { font-size: 0.8rem; color: var(--muted); font-weight: 300; line-height: 1.7; flex: 1; }
-    .project-tags { display: flex; flex-wrap: wrap; gap: 0.4rem; margin-top: 0.25rem; }
+    .project-card:hover::before { opacity:1; }
+    .project-card:hover { border-color:var(--accent); box-shadow:0 0 30px rgba(0,212,255,0.07); }
+    a.project-card::after {
+      content:'↗'; position:absolute; top:1.25rem; right:1.25rem;
+      color:var(--dim); font-size:.9rem; transition:color .3s, transform .3s;
+    }
+    a.project-card:hover::after { color:var(--accent); transform:translate(2px,-2px); }
+    .project-icon { font-size:1.5rem; }
+    .project-name { font-family:'Syne',sans-serif; font-size:1rem; font-weight:700; color:var(--text); }
+    .project-desc { font-size:.8rem; color:var(--muted); font-weight:300; line-height:1.7; flex:1; }
+    .project-tags { display:flex; flex-wrap:wrap; gap:.4rem; margin-top:.25rem; }
     .tag {
-      font-size: 0.62rem; letter-spacing: 0.1em; text-transform: uppercase;
-      color: var(--accent2); background: rgba(123,97,255,0.1);
-      border: 1px solid rgba(123,97,255,0.2); border-radius: 3px; padding: 0.2rem 0.5rem;
+      font-size:.62rem; letter-spacing:.1em; text-transform:uppercase;
+      color:var(--accent2); background:rgba(123,97,255,0.1);
+      border:1px solid rgba(123,97,255,0.2); border-radius:3px; padding:.2rem .5rem;
     }
-
     /* SKILLS */
-    .skills-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 1rem; }
+    .skills-grid { display:grid; grid-template-columns:repeat(auto-fill,minmax(200px,1fr)); gap:1rem; }
     .skill-group {
-      background: var(--surface); border: 1px solid var(--border); border-radius: 8px;
-      padding: 1.25rem; transition: border-color 0.3s, transform 0.3s;
+      background:var(--surface); border:1px solid var(--border); border-radius:8px;
+      padding:1.25rem; transition:border-color .3s, transform .3s;
     }
-    .skill-group:hover { border-color: var(--accent2); transform: translateY(-3px); }
-    .skill-group-title { font-size: 0.63rem; letter-spacing: 0.15em; text-transform: uppercase; color: var(--accent2); margin-bottom: 0.75rem; }
-    .skill-list { display: flex; flex-direction: column; gap: 0.4rem; }
-    .skill-item { font-size: 0.82rem; color: var(--muted); display: flex; align-items: center; gap: 0.5rem; }
-    .skill-item::before { content: ''; width: 4px; height: 4px; border-radius: 50%; background: var(--accent); flex-shrink: 0; }
-
+    .skill-group:hover { border-color:var(--accent2); transform:translateY(-3px); }
+    .skill-group-title { font-size:.63rem; letter-spacing:.15em; text-transform:uppercase; color:var(--accent2); margin-bottom:.75rem; }
+    .skill-list { display:flex; flex-direction:column; gap:.4rem; }
+    .skill-item { font-size:.82rem; color:var(--muted); display:flex; align-items:center; gap:.5rem; }
+    .skill-item::before { content:''; width:4px; height:4px; border-radius:50%; background:var(--accent); flex-shrink:0; }
     /* CONTACT */
-    #contact { text-align: center; }
-    .contact-links { display: flex; justify-content: center; flex-wrap: wrap; gap: 1rem; margin-top: 2.5rem; }
+    #contact { text-align:center; }
+    .contact-links { display:flex; justify-content:center; flex-wrap:wrap; gap:1rem; margin-top:2.5rem; }
     .contact-link {
-      display: flex; align-items: center; gap: 0.6rem;
-      padding: 0.9rem 1.75rem; border: 1px solid var(--border); border-radius: 6px;
-      text-decoration: none; color: var(--muted); font-size: 0.78rem;
-      letter-spacing: 0.08em; transition: all 0.25s; background: var(--surface);
+      display:flex; align-items:center; gap:.6rem;
+      padding:.9rem 1.75rem; border:1px solid var(--border); border-radius:6px;
+      text-decoration:none; color:var(--muted); font-size:.78rem;
+      letter-spacing:.08em; transition:all .25s; background:var(--surface);
     }
-    .contact-link:hover { border-color: var(--accent); color: var(--accent); box-shadow: 0 0 20px rgba(0,212,255,0.08); }
-    .contact-link svg { width: 16px; height: 16px; }
-
+    .contact-link:hover { border-color:var(--accent); color:var(--accent); box-shadow:0 0 20px rgba(0,212,255,0.08); }
+    .contact-link svg { width:16px; height:16px; }
     footer {
-      text-align: center; padding: 2rem;
-      color: var(--dim); font-size: 0.72rem; letter-spacing: 0.1em;
-      border-top: 1px solid var(--border); position: relative; z-index: 1;
+      text-align:center; padding:2rem; color:var(--dim); font-size:.72rem;
+      letter-spacing:.1em; border-top:1px solid var(--border); position:relative; z-index:1;
     }
-
-    @keyframes fadeUp { from { opacity: 0; transform: translateY(24px); } to { opacity: 1; transform: translateY(0); } }
-    ::-webkit-scrollbar { width: 5px; }
-    ::-webkit-scrollbar-track { background: var(--bg); }
-    ::-webkit-scrollbar-thumb { background: var(--border); border-radius: 3px; }
-
-    @media (max-width: 640px) {
-      nav { padding: 1rem 1.5rem; } .nav-links { gap: 1rem; }
-      section { padding: 5rem 1.25rem; } .about-grid { grid-template-columns: 1fr; }
-      #hero { padding: 7rem 1.25rem 3rem; } body { cursor: auto; }
-      .cursor, .cursor-ring { display: none; }
+    @keyframes fadeUp { from{opacity:0;transform:translateY(24px)} to{opacity:1;transform:translateY(0)} }
+    ::-webkit-scrollbar { width:5px; }
+    ::-webkit-scrollbar-track { background:var(--bg); }
+    ::-webkit-scrollbar-thumb { background:var(--border); border-radius:3px; }
+    @media(max-width:640px) {
+      nav { padding:1rem 1.5rem; } .nav-links { gap:1rem; }
+      section { padding:5rem 1.25rem; } .about-grid { grid-template-columns:1fr; }
+      #hero { padding:7rem 1.25rem 3rem; } body { cursor:auto; }
+      .cursor, .cursor-ring { display:none; }
     }
   </style>
 </head>
@@ -336,7 +300,7 @@
 
   <nav id="nav">
     <a href="#hero" class="nav-logo">AA/</a>
-    <ul class="nav-links" id="navLinks">
+    <ul class="nav-links">
       <li><a href="#about">About</a></li>
       <li><a href="#experience">Experience</a></li>
       <li><a href="#projects">Projects</a></li>
@@ -378,8 +342,8 @@
       <div class="about-text reveal-left">
         <p>I'm <strong>Adam Ansari</strong>, a Physics student at the University of Warwick (predicted 1:1, graduating 2027) with a deep interest in using maths and code to model complex systems — from quantum mechanics to financial markets.</p>
         <p>My background spans <strong>AI development</strong>, <strong>quantitative finance</strong>, and <strong>entrepreneurship</strong>. I've worked as an AI Developer at Outlier AI, a Quant Analyst at PowerPay Exchange, shadowed at Mutual Finance, and founded my own tutoring company.</p>
-        <p>Outside of work, I'm a <strong>Cambridge AI Hackathon Finalist</strong>, Oxford Computing Challenge winner, active investor with an 18% annual return over 4 years, and a chess player rated 1700 ELO.</p>
-        <p>Languages: <strong>English</strong> (fluent) · <strong>German</strong> & <strong>Arabic</strong> (advanced)</p>
+        <p>I'm also a <strong>Cambridge AI Hackathon Finalist</strong>, Oxford Computing Challenge winner, active investor with an 18% annual return over 4 years, and a chess player rated 1700 ELO.</p>
+        <p>Languages: <strong>English</strong> (fluent) · <strong>German</strong> &amp; <strong>Arabic</strong> (advanced)</p>
         <div class="awards-strip">
           <span class="award-pill">🏆 Cambridge AI Hackathon Finalist</span>
           <span class="award-pill">🥇 Oxford Computing Challenge Winner</span>
@@ -442,7 +406,7 @@
       <div class="timeline-item">
         <div class="timeline-dot"></div>
         <div class="timeline-date">Dec 2023 — Nov 2024</div>
-        <div class="timeline-role">Trading & Investments Analyst</div>
+        <div class="timeline-role">Trading &amp; Investments Analyst</div>
         <div class="timeline-org">Infinity Forex Trading</div>
         <div class="timeline-desc">Developed a systematic approach to analysing commodity and FX markets, combining technical analysis with structured risk management across live positions. Integrated the AI platform 'Menara' to augment quantitative decision-making — using regression modelling and pattern recognition to identify high-probability setups. Applied consistent position sizing and risk controls, achieving an 800% ROI across the managed portfolio over the course of the programme.</div>
         <div class="timeline-tags">
@@ -453,11 +417,11 @@
       <div class="timeline-item">
         <div class="timeline-dot"></div>
         <div class="timeline-date">2022 — Present</div>
-        <div class="timeline-role">Founder & Lead Tutor</div>
+        <div class="timeline-role">Founder &amp; Lead Tutor</div>
         <div class="timeline-org">Ansari Tutoring</div>
         <div class="timeline-desc">Founded during secondary school and grown to nearly 20 clients at GCSE and A-level. Leads a team of 3 tutors, implementing unique teaching methods. Students have consistently achieved strong grade improvements. Active on Instagram as @ansari_tutoring.</div>
         <div class="timeline-tags">
-          <span class="timeline-tag">Leadership</span><span class="timeline-tag">Entrepreneurship</span><span class="timeline-tag">Education</span><span class="timeline-tag">Physics & Maths</span>
+          <span class="timeline-tag">Leadership</span><span class="timeline-tag">Entrepreneurship</span><span class="timeline-tag">Education</span><span class="timeline-tag">Physics &amp; Maths</span>
         </div>
       </div>
 
@@ -466,7 +430,7 @@
         <div class="timeline-date">2024 — Present</div>
         <div class="timeline-role">BSc Physics</div>
         <div class="timeline-org">University of Warwick · Predicted 1:1 · Graduating 2027</div>
-        <div class="timeline-desc">Relevant modules: Python (highly proficient), SQL, Stochastic Calculus, Linear Algebra, AI/ML integrated with Statistics, Electronics, Origin Pro, Quantitative Analysis, and Excel. A-levels: AAB in Mathematics, Geography & Physics.</div>
+        <div class="timeline-desc">Relevant modules: Python (highly proficient), SQL, Stochastic Calculus, Linear Algebra, AI/ML integrated with Statistics, Electronics, Origin Pro, Quantitative Analysis, and Excel. A-levels: AAB in Mathematics, Geography &amp; Physics.</div>
         <div class="timeline-tags">
           <span class="timeline-tag">Stochastic Calculus</span><span class="timeline-tag">Linear Algebra</span><span class="timeline-tag">Quantum Mechanics</span><span class="timeline-tag">Statistics</span>
         </div>
@@ -480,24 +444,35 @@
     <p class="section-label reveal">03 — GitHub Projects</p>
     <h2 class="reveal">Things I've built</h2>
     <div class="projects-grid">
-      <a href="https://github.com/adam1ansari1-lang/ML-Stock-Forecasting" target="_blank" class="project-card" style="text-decoration:none;color:inherit;">
+
+      <a href="https://github.com/adam1ansari1-lang/ML-Stock-Forecasting" target="_blank" class="project-card">
         <div class="project-icon">📈</div>
         <div class="project-name">ML Stock Forecasting</div>
-        <div class="project-desc">A walk-forward back-testing framework built in Python to evaluate and compare ML-based trading strategies on live historical market data. Benchmarks Random Forest against Linear Regression across multiple market conditions, using time-series decomposition and feature engineering to improve signal quality. Originally developed during my role at PowerPay Exchange, where it was used to inform real trading decisions.</div>
+        <div class="project-desc">A walk-forward back-testing framework built in Python to evaluate and compare ML-based trading strategies on historical market data. Benchmarks Random Forest against Linear Regression across multiple market conditions, using time-series decomposition and feature engineering to improve signal quality. Originally developed during my role at PowerPay Exchange, where it was used to inform real trading decisions.</div>
         <div class="project-tags"><span class="tag">Python</span><span class="tag">Sklearn</span><span class="tag">Pandas</span><span class="tag">Time-Series</span><span class="tag">Matplotlib</span></div>
       </a>
-      <a href="https://github.com/adam1ansari1-lang/Dalitz-Plots-and-Particle-Physics" target="_blank" class="project-card" style="text-decoration:none;color:inherit;">
+
+      <a href="https://github.com/adam1ansari1-lang/Dalitz-Plots-and-Particle-Physics" target="_blank" class="project-card">
         <div class="project-icon">⚛️</div>
-        <div class="project-name">Dalitz Plots & Particle Physics</div>
-        <div class="project-desc">A Python-based analysis of three-body particle decay using Dalitz plots — a technique first introduced by Richard Dalitz in 1953 and central to modern high-energy physics experiments. The project computes invariant masses of decay product pairs, constructs the two-dimensional phase-space plots, and identifies resonance structures and CP violation signatures in the data. Directly relevant to research conducted in the Physics department at Warwick.</div>
+        <div class="project-name">Dalitz Plots &amp; Particle Physics</div>
+        <div class="project-desc">A Python-based analysis of three-body particle decay using Dalitz plots — a technique central to modern high-energy physics experiments. Computes invariant masses of decay product pairs, constructs two-dimensional phase-space plots, and identifies resonance structures and CP violation signatures within the data. Directly relevant to experimental particle physics research at Warwick.</div>
         <div class="project-tags"><span class="tag">Python</span><span class="tag">NumPy</span><span class="tag">Matplotlib</span><span class="tag">Particle Physics</span><span class="tag">CP Violation</span></div>
       </a>
-      <a href="https://github.com/adam1ansari1-lang/Dalitz-Plots-and-Particle-Physics" target="_blank" class="project-card" style="text-decoration:none;color:inherit;">
+
+      <a href="https://github.com/adam1ansari1-lang/Modelling-air-resistance-motion" target="_blank" class="project-card">
+        <div class="project-icon">🌬️</div>
+        <div class="project-name">Modelling Air Resistance &amp; Motion</div>
+        <div class="project-desc">A numerical physics simulation modelling projectile motion under realistic air resistance conditions. Solves the coupled differential equations of motion using Python, comparing drag models (linear and quadratic) across varying initial conditions such as launch angle, velocity, and air density. Visualises trajectory differences between idealised and real-world motion — a core topic in classical mechanics covered in my degree at Warwick.</div>
+        <div class="project-tags"><span class="tag">Python</span><span class="tag">NumPy</span><span class="tag">Matplotlib</span><span class="tag">ODE Solving</span><span class="tag">Classical Mechanics</span></div>
+      </a>
+
+      <div class="project-card">
         <div class="project-icon">🤖</div>
         <div class="project-name">Educational Chatbot</div>
-        <div class="project-desc">Built for the Cambridge AI Hackathon, where it reached the finalist stage. The chatbot supports GCSE and A-level students by answering curriculum-aligned questions across Physics, Maths, and STEM subjects — using natural language processing to interpret queries and return clear, structured explanations. Directly inspired by my experience running Ansari Tutoring and the gap I saw in accessible, on-demand academic support.</div>
+        <div class="project-desc">Built for the Cambridge AI Hackathon, where it reached the finalist stage. The chatbot supports GCSE and A-level students by answering curriculum-aligned questions across Physics, Maths, and STEM subjects — using natural language processing to interpret queries and return clear, structured explanations. Directly inspired by running Ansari Tutoring and the gap I saw in accessible, on-demand academic support.</div>
         <div class="project-tags"><span class="tag">Python</span><span class="tag">NLP</span><span class="tag">AI</span><span class="tag">Education</span></div>
-      </a>
+      </div>
+
     </div>
   </section>
 
@@ -527,7 +502,7 @@
         </div>
       </div>
       <div class="skill-group reveal">
-        <div class="skill-group-title">Data & ML</div>
+        <div class="skill-group-title">Data &amp; ML</div>
         <div class="skill-list">
           <div class="skill-item">NumPy / SciPy</div>
           <div class="skill-item">Pandas / Matplotlib</div>
@@ -540,10 +515,10 @@
         <div class="skill-group-title">Finance</div>
         <div class="skill-list">
           <div class="skill-item">Quantitative Analysis</div>
-          <div class="skill-item">FX & Commodities</div>
+          <div class="skill-item">FX &amp; Commodities</div>
           <div class="skill-item">Risk Analysis</div>
           <div class="skill-item">Portfolio Optimisation</div>
-          <div class="skill-item">Excel & Origin Pro</div>
+          <div class="skill-item">Excel &amp; Origin Pro</div>
         </div>
       </div>
       <div class="skill-group reveal">
@@ -573,11 +548,11 @@
   <section id="contact">
     <p class="section-label reveal">05 — Contact</p>
     <h2 class="reveal">Let's connect</h2>
-    <p class="reveal" style="color:var(--muted);max-width:480px;margin:0 auto;font-weight:300;font-size:0.9rem;">
+    <p class="reveal" style="color:var(--muted);max-width:480px;margin:0 auto;font-weight:300;font-size:.9rem;">
       Open to research collaborations, finance opportunities, tutoring enquiries, and interesting conversations.
     </p>
     <div class="contact-links reveal">
-      <a href="/cdn-cgi/l/email-protection#93f2f7f2fea2f2fde0f2e1faa2d3f4fef2faffbdf0fcfe" class="contact-link">
+      <a href="mailto:adam1ansari1@gmail.com" class="contact-link">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>
         Email
       </a>
@@ -585,7 +560,7 @@
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>
         LinkedIn
       </a>
-      <a href="https://github.com/adamansari" target="_blank" class="contact-link">
+      <a href="https://github.com/adam1ansari1-lang" target="_blank" class="contact-link">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/></svg>
         GitHub
       </a>
@@ -597,70 +572,80 @@
   </section>
 
   <footer>
-    <p>© 2026 Adam Ansari — Physicist · Quant · Founder · Built with HTML, hosted on GitHub Pages</p>
+    <p>2026 Adam Ansari — Physicist · Quant · Founder · Built with HTML, hosted on GitHub Pages</p>
   </footer>
 
-  <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
-    // ── Custom cursor ──
+  <script>
+    // Custom cursor
     const cursor = document.getElementById('cursor');
     const ring = document.getElementById('cursorRing');
     let mx = 0, my = 0, rx = 0, ry = 0;
-    document.addEventListener('mousemove', e => { mx = e.clientX; my = e.clientY; });
-    (function animateCursor() {
-      cursor.style.left = mx + 'px'; cursor.style.top = my + 'px';
-      rx += (mx - rx) * 0.12; ry += (my - ry) * 0.12;
-      ring.style.left = rx + 'px'; ring.style.top = ry + 'px';
+    document.addEventListener('mousemove', function(e) { mx = e.clientX; my = e.clientY; });
+    function animateCursor() {
+      cursor.style.left = mx + 'px';
+      cursor.style.top = my + 'px';
+      rx += (mx - rx) * 0.12;
+      ry += (my - ry) * 0.12;
+      ring.style.left = rx + 'px';
+      ring.style.top = ry + 'px';
       requestAnimationFrame(animateCursor);
-    })();
+    }
+    animateCursor();
 
-    // ── Scroll progress bar ──
-    const bar = document.getElementById('progressBar');
-    const updateScroll = () => {
-      const pct = window.scrollY / (document.body.scrollHeight - window.innerHeight) * 100;
+    // Progress bar
+    var bar = document.getElementById('progressBar');
+    function updateBar() {
+      var pct = window.scrollY / (document.body.scrollHeight - window.innerHeight) * 100;
       bar.style.width = pct + '%';
-    };
+    }
 
-    // ── Nav shrink + active links ──
-    const nav = document.getElementById('nav');
-    const sections = document.querySelectorAll('section[id]');
-    const navAs = document.querySelectorAll('.nav-links a');
-    window.addEventListener('scroll', () => {
-      updateScroll();
+    // Nav + parallax
+    var nav = document.getElementById('nav');
+    var sections = document.querySelectorAll('section[id]');
+    var navAs = document.querySelectorAll('.nav-links a');
+    window.addEventListener('scroll', function() {
+      updateBar();
       nav.classList.toggle('scrolled', window.scrollY > 60);
-      let current = '';
-      sections.forEach(s => { if (window.scrollY >= s.offsetTop - 200) current = s.id; });
-      navAs.forEach(a => a.classList.toggle('active', a.getAttribute('href') === '#' + current));
-
-      // Parallax orbs
-      const y = window.scrollY;
-      document.getElementById('orb1').style.transform = `translateY(${y * 0.14}px)`;
-      document.getElementById('orb2').style.transform = `translateY(${-y * 0.09}px)`;
-      document.getElementById('orb3').style.transform = `translateY(${y * 0.07}px)`;
+      var current = '';
+      sections.forEach(function(s) { if (window.scrollY >= s.offsetTop - 200) current = s.id; });
+      navAs.forEach(function(a) { a.classList.toggle('active', a.getAttribute('href') === '#' + current); });
+      var y = window.scrollY;
+      document.getElementById('orb1').style.transform = 'translateY(' + (y * 0.14) + 'px)';
+      document.getElementById('orb2').style.transform = 'translateY(' + (-y * 0.09) + 'px)';
+      document.getElementById('orb3').style.transform = 'translateY(' + (y * 0.07) + 'px)';
     });
 
-    // ── Stars ──
-    const starsEl = document.getElementById('stars');
-    for (let i = 0; i < 140; i++) {
-      const s = document.createElement('div');
+    // Stars
+    var starsEl = document.getElementById('stars');
+    for (var i = 0; i < 140; i++) {
+      var s = document.createElement('div');
       s.classList.add('star');
-      const sz = Math.random() * 2 + 0.5;
-      s.style.cssText = `width:${sz}px;height:${sz}px;top:${Math.random()*100}%;left:${Math.random()*100}%;--d:${Math.random()*4+2}s;--delay:-${Math.random()*6}s;--min-op:${Math.random()*0.1};--max-op:${Math.random()*0.6+0.2};`;
+      var sz = Math.random() * 2 + 0.5;
+      s.style.cssText = 'width:' + sz + 'px;height:' + sz + 'px;top:' + (Math.random()*100) + '%;left:' + (Math.random()*100) + '%;--d:' + (Math.random()*4+2) + 's;--delay:-' + (Math.random()*6) + 's;--min-op:' + (Math.random()*0.1) + ';--max-op:' + (Math.random()*0.6+0.2) + ';';
       starsEl.appendChild(s);
     }
 
-    // ── Scroll reveal ──
-    const revObs = new IntersectionObserver(entries => {
-      entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
+    // Scroll reveal
+    var revObs = new IntersectionObserver(function(entries) {
+      entries.forEach(function(e) { if (e.isIntersecting) e.target.classList.add('visible'); });
     }, { threshold: 0.08 });
-    document.querySelectorAll('.reveal, .reveal-left, .reveal-right, .timeline-item, .project-card').forEach(el => revObs.observe(el));
+    document.querySelectorAll('.reveal, .reveal-left, .reveal-right, .timeline-item, .project-card').forEach(function(el) {
+      revObs.observe(el);
+    });
 
-    // ── Stagger delays ──
-    document.querySelectorAll('.project-card').forEach((c, i) => c.style.transitionDelay = `${i * 0.1}s`);
-    document.querySelectorAll('.timeline-item').forEach((t, i) => t.style.transitionDelay = `${i * 0.12}s`);
-    document.querySelectorAll('.skill-group').forEach((s, i) => s.style.transitionDelay = `${i * 0.07}s`);
+    // Stagger delays
+    document.querySelectorAll('.project-card').forEach(function(c, i) { c.style.transitionDelay = (i * 0.1) + 's'; });
+    document.querySelectorAll('.timeline-item').forEach(function(t, i) { t.style.transitionDelay = (i * 0.12) + 's'; });
+    document.querySelectorAll('.skill-group').forEach(function(s, i) { s.style.transitionDelay = (i * 0.07) + 's'; });
 
-    // ── Project card mouse glow ──
-    document.querySelectorAll('.project-card').forEach(card => {
-      card.addEventListener('mousemove', e => {
-        const r = card.getBoundingClientRect();
-        card.style.setProperty('--mx', ((e.clientX - r.left) / r.
+    // Project card mouse glow
+    document.querySelectorAll('.project-card').forEach(function(card) {
+      card.addEventListener('mousemove', function(e) {
+        var r = card.getBoundingClientRect();
+        card.style.setProperty('--mx', ((e.clientX - r.left) / r.width * 100) + '%');
+        card.style.setProperty('--my', ((e.clientY - r.top) / r.height * 100) + '%');
+      });
+    });
+  </script>
+</body>
+</html>
